@@ -32,17 +32,17 @@ namespace _09_Portfolio
 
             Assert.AreEqual(56.67, s.PricePerShare);
         }
-        [TestMethod]
-        public void CanSetAndGetNumShares()
-        {
-            Stock s = new Stock();
-            s.Symbol = "MSFT";
-            s.PricePerShare = 56.67;
-            s.NumShares = 100;
+                [TestMethod]
+                public void CanSetAndGetNumShares()
+                {
+                    Stock s = new Stock();
+                    s.Symbol = "MSFT";
+                    s.PricePerShare = 56.67;
+                    s.NumShares = 100;
 
-            Assert.AreEqual(100, s.NumShares);
-            Assert.AreEqual(5667, s.GetValue());
-        }
+                    Assert.AreEqual(100, s.NumShares);
+                    Assert.AreEqual(5667, s.GetValue());
+                }
 
         [TestMethod]
         public void CanUseMultiArgumentConstructor()
@@ -70,7 +70,7 @@ namespace _09_Portfolio
             Stock stockHP = new Stock("HPQ", 60.03, 120);
             Stock stockIBM = new Stock("IBM", 32.11, 50);
 
-           Stock[] stocks = new Stock[2];
+            Stock[] stocks = new Stock[2];
             stocks[0] = stockHP;
             stocks[1] = stockIBM;
 
@@ -82,10 +82,10 @@ namespace _09_Portfolio
         {
             Stock stockABC = new Stock("ABC", 12.23, 50);
 
-            Assert.AreEqual("Stock[symbol=ABC,pricePerShare=12.23,numShares=50]", stockABC.ToString());
+            Assert.AreEqual("Stock[symbol=ABC,pricePerShare=12,23,numShares=50]", stockABC.ToString());
         }
 
-        
+
         [TestMethod]
         public void TwoStockObjectsWithSameValuesAreEqual()
         {
