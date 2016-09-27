@@ -2,7 +2,7 @@
 
 namespace _09_Portfolio
 {
-    internal class Stock
+    public class Stock : IAsset
     {
         public int NumShares { get; internal set; }
 
@@ -20,26 +20,16 @@ namespace _09_Portfolio
             this.PricePerShare = priceshare;
             this.NumShares = amount;
         }
-        internal double GetValue()
+        public double GetValue()
         {
-           return (double) (NumShares * PricePerShare);
-           
+            return (double)(NumShares * PricePerShare);
+
         }
 
-        internal static double TotalValue(Stock[] stocks)
-        {
-            double totalvalue = 0;
-            foreach (Stock s in stocks) 
-            {
-                double valueShare = (double)(s.NumShares * s.PricePerShare);
-                totalvalue = totalvalue + valueShare ;
-            }
-            return totalvalue ;
-        }
         public override string ToString()
-        {   
+        {
 
-            string str = "Stock[symbol="+ this.Symbol + ",pricePerShare="+this.PricePerShare+",numShares=" + this.NumShares+ "]"  ;
+            string str = "Stock[symbol=" + this.Symbol + ",pricePerShare=" + this.PricePerShare + ",numShares=" + this.NumShares + "]";
             return str;
         }
         public override bool Equals(object obj)
@@ -47,8 +37,30 @@ namespace _09_Portfolio
             Stock s = (Stock)obj;
             if (this.NumShares == s.NumShares && this.PricePerShare == s.PricePerShare && this.Symbol == s.Symbol)
                 return true;
-      
+
             return false;
+        }
+
+        public static double TotalValue(IAsset [] portfolio)
+        {
+            double totalvalue = 0;
+            foreach (IAsset s in portfolio)
+            {
+                totalvalue +=s.GetValue();
+            }
+            return totalvalue;
+
+
+
+        }
+        public static double TotalValue(Stock[] portfolio)
+        {
+            double totalvalue = 0;
+            foreach (Stock s in portfolio)
+            {
+                totalvalue += s.GetValue();
+            }
+            return totalvalue;
         }
     }
 }
